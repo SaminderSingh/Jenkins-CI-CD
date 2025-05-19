@@ -4,7 +4,7 @@ full Pipeline Implementation
 
 ## Installation on EC2 Instance
 
-YouTube Video ->
+YouTube Video -> https://youtu.be/2Yx5OGlqKxc
 
 
 
