@@ -56,8 +56,8 @@ pipeline {
                     git config user.email "ssaminder@gmail.com"
                     git config user.name "SaminderSingh"
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
-                    git add manifest/deployment.yml
+                    sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" sammy34719/manifest/deployment.yml
+                    git add sammy34719/manifest/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER} [ci skip]"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
                 '''
