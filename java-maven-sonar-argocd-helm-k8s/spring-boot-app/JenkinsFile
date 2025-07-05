@@ -52,26 +52,30 @@ pipeline {
         }
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-                sh '''
-                    git config user.email "ssaminder@gmail.com"
-                    git config user.name "SaminderSingh"
-                    BUILD_NUMBER=${BUILD_NUMBER}
-                    # Modify deployment file inside cloned repo
-                    sh 'pwd'
-                    sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
-                    sh 'pwd'
-                    cd manifest
-                    sh 'pwd'
-                    git add deployment.yml
-                    git commit -m "Update deployment image to version ${BUILD_NUMBER} [ci skip]"
-                    sh 'pwd'
-                    git push https://${GITHUB_TOKEN}@github.com/SaminderSingh/manifest.git HEAD:main
-                    
-                    
-                    
-                    
-
-                '''
+              sh '''
+                echo "🟡 Step 1: Show current working directory before clone:"
+                pwd
+        
+                echo "🟡 Step 2: Clone the manifest repo"
+                git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+        
+                echo "🟡 Step 3: Show directory after clone"
+                ls -la
+        
+                echo "🟡 Step 4: Modify deployment file in cloned repo"
+                sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" ${GIT_REPO_NAME}/deployment.yml
+        
+                echo "🟡 Step 5: Change into manifest directory"
+                cd ${GIT_REPO_NAME}
+                pwd  # This will now show /var/lib/jenkins/workspace/your-job-name/manifest
+        
+                echo "🟡 Step 6: Git add/commit/push"
+                git config user.email "ssaminder@gmail.com"
+                git config user.name "SaminderSingh"
+                git add deployment.yml
+                git commit -m "Update deployment image to version ${BUILD_NUMBER} [ci skip]"
+                git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:main
+              '''
             }
         }
     }
