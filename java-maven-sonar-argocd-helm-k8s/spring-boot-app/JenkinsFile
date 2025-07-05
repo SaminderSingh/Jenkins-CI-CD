@@ -56,7 +56,7 @@ pipeline {
                     git config user.email "ssaminder@gmail.com"
                     git config user.name "SaminderSingh"
                     BUILD_NUMBER=${BUILD_NUMBER}
-
+                    rm -rf manifest
                     git clone https://${GITHUB_TOKEN}@github.com/SaminderSingh/manifest.git        
                     # Modify deployment file inside cloned repo
                     sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
