@@ -55,10 +55,7 @@ pipeline {
               sh '''
                 echo "🟡 Step 1: Show current working directory before clone:"
                 pwd
-        
-                echo "🟡 Step 2: Clone the manifest repo"
-                git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/manifest.git
-        
+      
                 echo "🟡 Step 3: Show directory after clone"
                 ls -la
         
