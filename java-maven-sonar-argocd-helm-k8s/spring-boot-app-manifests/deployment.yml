@@ -11,7 +11,7 @@ spec:
       app: spring-boot-app
   template:
     metadata:
-      labels:
+      labels: 
         app: spring-boot-app
     spec:
       containers:
