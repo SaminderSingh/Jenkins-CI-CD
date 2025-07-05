@@ -57,7 +57,7 @@ pipeline {
                     git config user.name "SaminderSingh"
                     BUILD_NUMBER=${BUILD_NUMBER}
 
-                    git clone https://${GITHUB_TOKEN}@github.com/sammy34719/manifest.git
+                    git clone https://${GITHUB_TOKEN}@github.com/SaminderSingh/manifest.git
                     sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
                     cd manifest
                     git add deployment.yml
