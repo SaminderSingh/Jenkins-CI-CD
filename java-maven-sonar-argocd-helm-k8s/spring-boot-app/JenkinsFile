@@ -71,7 +71,7 @@ pipeline {
                 git config user.name "SaminderSingh"
                 git add deployment.yml
                 git commit -m "Update deployment image to version ${BUILD_NUMBER} [ci skip]"
-                git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git HEAD:main
+                git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/manifest.git HEAD:main
               '''
             }
         }
