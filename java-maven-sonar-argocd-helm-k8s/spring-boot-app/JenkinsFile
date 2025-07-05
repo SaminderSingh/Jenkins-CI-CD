@@ -57,10 +57,14 @@ pipeline {
                     git config user.name "SaminderSingh"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     # Modify deployment file inside cloned repo
+                    sh 'pwd'
                     sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
+                    sh 'pwd'
                     cd manifest
+                    sh 'pwd'
                     git add deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER} [ci skip]"
+                    sh 'pwd'
                     git push https://${GITHUB_TOKEN}@github.com/SaminderSingh/manifest.git HEAD:main
                     
                     
