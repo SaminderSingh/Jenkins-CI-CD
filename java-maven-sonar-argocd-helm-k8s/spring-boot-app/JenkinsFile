@@ -63,7 +63,7 @@ pipeline {
                 ls -la
         
                 echo "🟡 Step 4: Modify deployment file in cloned repo"
-                sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" ${GIT_REPO_NAME}/deployment.yml
+                sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
         
                 echo "🟡 Step 5: Change into manifest directory"
                 cd ${GIT_REPO_NAME}
