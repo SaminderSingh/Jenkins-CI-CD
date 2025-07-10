@@ -53,16 +53,16 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
               sh '''
-                echo "🟡 Step 1: Clean up any old clone"
+                echo "Step 1: Clean up any old clone"
                 rm -rf manifest
         
-                echo "🟡 Step 2: Clone the manifest repo"
+                echo "Step 2: Clone the manifest repo"
                 git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/manifest.git
         
-                echo "🟡 Step 3: Modify deployment file"
+                echo "Step 3: Modify deployment file"
                 sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
         
-                echo "🟡 Step 4: Git add/commit/push"
+                echo "Step 4: Git add/commit/push"
                 cd manifest
                 git config user.email "ssaminder@gmail.com"
                 git config user.name "SaminderSingh"
