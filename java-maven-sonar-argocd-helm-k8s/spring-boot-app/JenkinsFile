@@ -53,25 +53,22 @@ pipeline {
         steps {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
               sh '''
-                echo "🟡 Step 1: Show current working directory before clone:"
-                pwd
-      
-                echo "🟡 Step 3: Show directory after clone"
-                ls -la
+                echo "🟡 Step 1: Clean up any old clone"
+                rm -rf manifest
         
-                echo "🟡 Step 4: Modify deployment file in cloned repo"
+                echo "🟡 Step 2: Clone the manifest repo"
+                git clone https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/manifest.git
+        
+                echo "🟡 Step 3: Modify deployment file"
                 sed -i "s+sammy34719/jenkinscicd.*+sammy34719/jenkinscicd:${BUILD_NUMBER}+g" manifest/deployment.yml
         
-                echo "🟡 Step 5: Change into manifest directory"
+                echo "🟡 Step 4: Git add/commit/push"
                 cd manifest
-                pwd  # This will now show /var/lib/jenkins/workspace/your-job-name/manifest
-        
-                echo "🟡 Step 6: Git add/commit/push"
                 git config user.email "ssaminder@gmail.com"
                 git config user.name "SaminderSingh"
                 git add deployment.yml
                 git commit -m "Update deployment image to version ${BUILD_NUMBER} [ci skip]"
-                git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/manifest.git HEAD:main
+                git push
               '''
             }
         }
