@@ -14,7 +14,7 @@ public class StartApplication {
     public String index(final Model model) {
         model.addAttribute("title", "Automated the Full cicd pipeline from push to deployment till nodeport, pretty happy I have successfuly built a sprint boot application using Maven");
         model.addAttribute("msg", "This application is deployed on to Kubernetes using Argo CD Works");
-        model.addAttribute("msg", "I think this is last lol lols");
+        model.addAttribute("msg", "I think this is lasts lol lols");
         return "index";
     }
 
